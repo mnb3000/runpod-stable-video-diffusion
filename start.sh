@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e  # Exit the script if any statement returns a non-true return value
+set -e # Exit the script if any statement returns a non-true return value
 
 # ---------------------------------------------------------------------------- #
 #                          Function Definitions                                #
@@ -7,50 +7,50 @@ set -e  # Exit the script if any statement returns a non-true return value
 
 # Execute script if exists
 execute_script() {
-    local script_path=$1
-    local script_msg=$2
-    if [[ -f ${script_path} ]]; then
-        echo "${script_msg}"
-        bash "${script_path}"
-    fi
+	local script_path=$1
+	local script_msg=$2
+	if [[ -f ${script_path} ]]; then
+		echo "${script_msg}"
+		bash "${script_path}"
+	fi
 }
 
 # Setup ssh
 setup_ssh() {
-    if [[ $PUBLIC_KEY ]]; then
-        echo "Setting up SSH..."
-        mkdir -p ~/.ssh
-        echo "$PUBLIC_KEY" >> ~/.ssh/authorized_keys
-        chmod 700 -R ~/.ssh
+	if [[ $PUBLIC_KEY ]]; then
+		echo "Setting up SSH..."
+		mkdir -p ~/.ssh
+		echo "$PUBLIC_KEY" >>~/.ssh/authorized_keys
+		chmod 700 -R ~/.ssh
 
-         if [ ! -f /etc/ssh/ssh_host_rsa_key ]; then
-            ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key -q -N ''
-        fi
+		if [ ! -f /etc/ssh/ssh_host_rsa_key ]; then
+			ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key -q -N ''
+		fi
 
-        if [ ! -f /etc/ssh/ssh_host_dsa_key ]; then
-            ssh-keygen -t dsa -f /etc/ssh/ssh_host_dsa_key -q -N ''
-        fi
+		if [ ! -f /etc/ssh/ssh_host_dsa_key ]; then
+			ssh-keygen -t dsa -f /etc/ssh/ssh_host_dsa_key -q -N ''
+		fi
 
-        if [ ! -f /etc/ssh/ssh_host_ecdsa_key ]; then
-            ssh-keygen -t ecdsa -f /etc/ssh/ssh_host_ecdsa_key -q -N ''
-        fi
+		if [ ! -f /etc/ssh/ssh_host_ecdsa_key ]; then
+			ssh-keygen -t ecdsa -f /etc/ssh/ssh_host_ecdsa_key -q -N ''
+		fi
 
-        if [ ! -f /etc/ssh/ssh_host_ed25519_key ]; then
-            ssh-keygen -t ed25519 -f /etc/ssh/ssh_host_ed25519_key -q -N ''
-        fi
+		if [ ! -f /etc/ssh/ssh_host_ed25519_key ]; then
+			ssh-keygen -t ed25519 -f /etc/ssh/ssh_host_ed25519_key -q -N ''
+		fi
 
-        service ssh start
+		service ssh start
 
-        echo "SSH host keys:"
-        cat /etc/ssh/*.pub
-    fi
+		echo "SSH host keys:"
+		cat /etc/ssh/*.pub
+	fi
 }
 
 # Export env vars
 export_env_vars() {
-    echo "Exporting environment variables..."
-    printenv | grep -E '^RUNPOD_|^PATH=|^_=' | awk -F = '{ print "export " $1 "=\"" $2 "\"" }' >> /etc/rp_environment
-    echo 'source /etc/rp_environment' >> ~/.bashrc
+	echo "Exporting environment variables..."
+	printenv | grep -E '^RUNPOD_|^PATH=|^_=' | awk -F = '{ print "export " $1 "=\"" $2 "\"" }' >>/etc/rp_environment
+	echo 'source /etc/rp_environment' >>~/.bashrc
 }
 
 start_streamlit() {
@@ -63,7 +63,7 @@ create_symlinks() {
 	ln -s $MODEL_MOUNTPOINT/stable-video-diffusion-img2vid/svd.safetensors ./checkpoints/svd.safetensors
 	ln -s $MODEL_MOUNTPOINT/stable-video-diffusion-img2vid/svd_image_decoder.safetensors ./checkpoints/svd_image_decoder.safetensors
 	ln -s $MODEL_MOUNTPOINT/stable-video-diffusion-img2vid-xt/svd_xt.safetensors ./checkpoints/svd_xt.safetensors
-    ln -s $MODEL_MOUNTPOINT/stable-video-diffusion-img2vid-xt/svd_xt_image_decoder.safetensors ./checkpoints/svd_xt_image_decoder.safetensors
+	ln -s $MODEL_MOUNTPOINT/stable-video-diffusion-img2vid-xt/svd_xt_image_decoder.safetensors ./checkpoints/svd_xt_image_decoder.safetensors
 }
 
 check_workspace() {
@@ -77,7 +77,7 @@ check_workspace() {
 
 download_svd() {
 	check_workspace
-	
+
 	echo -n "Checking if SVD weights exist..."
 	if [ ! -f $MODEL_MOUNTPOINT/stable-video-diffusion-img2vid/svd.safetensors ]; then
 		echo " SVD weights not found."
@@ -98,7 +98,7 @@ download_svd() {
 
 download_svd_xt() {
 	check_workspace
-	
+
 	echo -n "Checking if SVD-XT weights exist..."
 	if [ ! -f $MODEL_MOUNTPOINT/stable-video-diffusion-img2vid-xt/svd_xt.safetensors ]; then
 		echo " SVD-XT weights not found."
@@ -137,4 +137,3 @@ execute_script "/post_start.sh" "Running post-start script..."
 echo "Start script(s) finished, pod is ready to use."
 
 sleep infinity
-

@@ -10,7 +10,7 @@ ENV SHELL=/bin/bash
 WORKDIR /
 
 # Default env vars
-ENV MODEL_MOUNTPOINT="/workspace"
+ENV MODEL_MOUNTPOINT=/workspace
 ENV PORT=3000
 
 # Update, upgrade, install packages and clean up
