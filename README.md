@@ -42,3 +42,6 @@ docker run --gpus all \
     -v /your/path:/model \
     -t mnb3000/runpod-stable-video-diffusion:svd-xt
 ```
+
+## Building (WIP)
+(Will provide build instructions soon)
