@@ -13,9 +13,6 @@ WORKDIR /
 ENV MODEL_MOUNTPOINT=/workspace
 ENV PORT=3000
 
-# Create workspace directory
-RUN mkdir /workspace
-
 # Update, upgrade, install packages and clean up
 RUN apt-get update --yes && \
     apt-get upgrade --yes && \

@@ -1,5 +1,6 @@
 # Runpod Stable Video Diffusion
 
+[![GitHub Repo](https://img.shields.io/badge/github-repo-green?logo=github)](https://github.com/mnb3000/runpod-stable-video-diffusion)
 [![Docker Image Version (latest semver)](https://img.shields.io/docker/v/mnb3000/runpod-stable-video-diffusion?logo=docker&label=dockerhub&color=blue)](https://hub.docker.com/repository/docker/mnb3000/runpod-stable-video-diffusion)
 [![RunPod.io Template (XT)](https://img.shields.io/badge/runpod_template-svd--xt-9b4ce6?logo=linuxcontainers&logoColor=9b4ce6)](https://runpod.io/gsc?template=0yuqqd2v24)
 [![RunPod.io Template (Base)](https://img.shields.io/badge/runpod_template-svd-9b4ce6?logo=linuxcontainers&logoColor=9b4ce6)](https://runpod.io/gsc?template=dove05wvcv)
