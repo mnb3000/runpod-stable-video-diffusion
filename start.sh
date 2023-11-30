@@ -88,9 +88,10 @@ download_svd() {
             return
         fi
         echo " Success!"
+        mkdir $MODEL_MOUNTPOINT/stable-video-diffusion-img2vid
         echo "Starting SVD weights download..."
-        wget https://huggingface.co/stabilityai/stable-video-diffusion-img2vid/resolve/main/svd.safetensors?download=true -P $MODEL_MOUNTPOINT/stable-video-diffusion-img2vid -O svd.safetensors
-        wget https://huggingface.co/stabilityai/stable-video-diffusion-img2vid/resolve/main/svd_image_decoder.safetensors?download=true -P $MODEL_MOUNTPOINT/stable-video-diffusion-img2vid -O svd_image_decoder.safetensors
+        wget -O $MODEL_MOUNTPOINT/stable-video-diffusion-img2vid/svd.safetensors https://huggingface.co/stabilityai/stable-video-diffusion-img2vid/resolve/main/svd.safetensors?download=true
+        wget -O $MODEL_MOUNTPOINT/stable-video-diffusion-img2vid/svd_image_decoder.safetensors https://huggingface.co/stabilityai/stable-video-diffusion-img2vid/resolve/main/svd_image_decoder.safetensors?download=true
         echo "Successfully downloaded SVD weights!"
     else
         echo " Success!"
@@ -110,9 +111,10 @@ download_svd_xt() {
             return
         fi
         echo " Success!"
+        mkdir $MODEL_MOUNTPOINT/stable-video-diffusion-img2vid-xt
         echo "Starting SVD-XT weights download..."
-        wget https://huggingface.co/stabilityai/stable-video-diffusion-img2vid-xt/resolve/main/svd_xt.safetensors?download=true -P $MODEL_MOUNTPOINT/stable-video-diffusion-img2vid-xt -O svd_xt.safetensors
-        wget https://huggingface.co/stabilityai/stable-video-diffusion-img2vid-xt/resolve/main/svd_xt_image_decoder.safetensors?download=true -P $MODEL_MOUNTPOINT/stable-video-diffusion-img2vid-xt -O svd_xt_image_decoder.safetensors
+        wget -O $MODEL_MOUNTPOINT/stable-video-diffusion-img2vid-xt/svd_xt.safetensors "https://huggingface.co/stabilityai/stable-video-diffusion-img2vid-xt/resolve/main/svd_xt.safetensors?download=true"
+        wget -O $MODEL_MOUNTPOINT/stable-video-diffusion-img2vid-xt/svd_xt_image_decoder.safetensors "https://huggingface.co/stabilityai/stable-video-diffusion-img2vid-xt/resolve/main/svd_xt_image_decoder.safetensors?download=true"
         echo "Successfully downloaded SVD-XT weights!"
     else
         echo " Success!"
