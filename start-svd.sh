@@ -87,7 +87,8 @@ download_svd() {
         fi
         echo " Success!"
         echo "Starting SVD weights download..."
-        git lfs clone https://huggingface.co/stabilityai/stable-video-diffusion-img2vid $MODEL_MOUNTPOINT/stable-video-diffusion-img2vid
+        wget https://huggingface.co/stabilityai/stable-video-diffusion-img2vid/resolve/main/svd.safetensors?download=true -P $MODEL_MOUNTPOINT/stable-video-diffusion-img2vid
+        wget https://huggingface.co/stabilityai/stable-video-diffusion-img2vid/resolve/main/svd_image_decoder.safetensors?download=true -P $MODEL_MOUNTPOINT/stable-video-diffusion-img2vid
         echo "Successfully downloaded SVD weights!"
     else
         echo " Success!"
