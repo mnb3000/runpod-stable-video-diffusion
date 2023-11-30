@@ -43,5 +43,33 @@ docker run --gpus all \
     -t mnb3000/runpod-stable-video-diffusion:svd-xt
 ```
 
-## Building (WIP)
-(Will provide build instructions soon)
+## Building (Replace tags with your's)
+
+- svd-base
+
+```
+docker buildx build \
+--platform=linux/amd64 \
+-f Dockerfile-svd \
+-t mnb3000/runpod-stable-video-diffusion:svd-base \
+.
+```
+
+- svd-xt
+
+```
+docker buildx build \
+--platform=linux/amd64 \
+-f Dockerfile-svd-xt \
+-t mnb3000/runpod-stable-video-diffusion:svd-xt \
+.
+```
+
+- svd-base-xt
+
+```
+docker buildx build \
+--platform=linux/amd64 \
+-t mnb3000/runpod-stable-video-diffusion:svd-base-xt \
+.
+```
